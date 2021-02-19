@@ -1,7 +1,9 @@
+# node to uniquely identify the proxy node.
 node:
   cluster: test-cluster
   id: test-id
 
+# dynamic_resources to tell Envoy which configurations should be updated dynamically
 dynamic_resources:
   ads_config:
     api_type: GRPC
@@ -16,6 +18,7 @@ dynamic_resources:
     resource_api_version: V3
     ads: {}
 
+# static_resources to specify where Envoy should retrieve its configuration from.
 static_resources:
   clusters:
   - connect_timeout: 1s
@@ -33,7 +36,7 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: my-control-plane
+                address: 127.0.0.1
                 port_value: 18000
 
 admin:
