@@ -10,6 +10,7 @@ envoy -c config/envoy-demo.yaml
 
 
 # 使用 grpc 配置
-envoy -c config/envoy-dynamic-control-plane-demo.yaml
+envoy -c config/grpc/proxy-node-1.yaml
+envoy -c config/grpc/proxy-node-2.yaml
 
  

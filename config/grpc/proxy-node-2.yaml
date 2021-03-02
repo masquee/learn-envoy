@@ -1,7 +1,7 @@
 # node to uniquely identify the proxy node.
 node:
-  cluster: test-cluster
-  id: test-id
+  cluster: demo-cluster-2
+  id: demo-id-2
 
 # dynamic_resources to tell Envoy which configurations should be updated dynamically
 dynamic_resources:
