@@ -1,5 +1,10 @@
 # `std::variant` 与 `std::visit`
 
+`variant` 和 `visit` 在 C++17 已进入标准库，对应名称是 `std::variant` 和
+`std::visit`，本文直接使用标准库写法。阅读不同版本的 Envoy 源码时，也可能
+看到 `absl::variant` / `absl::visit`；它们最初用于兼容不支持 C++17 的环境，
+在现代 Abseil 中会转发到标准库版本，并正在逐步退出使用。
+
 这部分最重要的不是模板语法，而是先建立一个简单模型：
 
 ```text
@@ -187,7 +192,7 @@ struct Overloaded : Callables... {
 - inheritance；
 - class template argument deduction guide。
 
-它们是实现 helper 所需的知识，不是使用 `std::variant` 的前置条件。
+它们是实现 helper 所需的知识，不是使用 `variant` 的前置条件。
 
 ## 6. 什么时候适合使用 `variant`
 

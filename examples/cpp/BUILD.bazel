@@ -28,7 +28,6 @@ cc_binary(
     name = "optional",
     srcs = ["03_optional.cc"],
     copts = COPTS,
-    deps = ["@abseil-cpp//absl/types:optional"],
 )
 
 cc_binary(

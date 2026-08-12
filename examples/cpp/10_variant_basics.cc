@@ -14,6 +14,7 @@ struct HttpConnectionManagerConfig {
 
 // FilterConfig 当前只能保存下面两种类型中的一种。
 // 可以把它读成：TcpProxyConfig OR HttpConnectionManagerConfig。
+// std::variant 是 C++17 标准库类型。
 using FilterConfig = std::variant<TcpProxyConfig, HttpConnectionManagerConfig>;
 
 void inspect(const FilterConfig &config) {
@@ -47,7 +48,7 @@ int main() {
   config = HttpConnectionManagerConfig{"local_route"};
   inspect(config);
 
-  // 不要在未确认类型时直接 get：类型不匹配会抛 std::bad_variant_access。
-  // Envoy 通常关闭 C++ exceptions，因此更应使用 get_if 或 std::visit。
+  // 不要在未确认类型时直接 get：类型不匹配会抛 bad_variant_access。
+  // Envoy data plane 不允许使用 exceptions，因此更应使用 get_if 或 visit。
   // std::get<TcpProxyConfig>(config);  // 当前保存的是 HTTP config，错误。
 }

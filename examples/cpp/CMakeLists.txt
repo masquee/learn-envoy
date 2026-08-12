@@ -25,7 +25,6 @@ add_learning_example(string_view 02_string_view.cc)
 target_link_libraries(string_view PRIVATE absl::strings)
 
 add_learning_example(optional 03_optional.cc)
-target_link_libraries(optional PRIVATE absl::optional)
 
 add_learning_example(span 04_span.cc)
 target_link_libraries(span PRIVATE absl::span)

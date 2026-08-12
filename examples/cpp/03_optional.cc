@@ -1,13 +1,13 @@
 #include <iostream>
+#include <optional>
 #include <string>
-
-#include "absl/types/optional.h"
 
 namespace {
 
 struct RouteConfig {
   std::string cluster;
-  absl::optional<int> timeout_ms; // “没有配置”和“配置为 0”含义不同。
+  // std::optional 是 C++17 标准库类型，也是当前 Envoy 推荐的写法。
+  std::optional<int> timeout_ms; // “没有配置”和“配置为 0”含义不同。
 };
 
 int effectiveTimeout(const RouteConfig &route, int default_timeout_ms) {
@@ -26,7 +26,7 @@ void printRoute(const RouteConfig &route) {
 } // namespace
 
 int main() {
-  RouteConfig inherited{"orders", absl::nullopt};
+  RouteConfig inherited{"orders", std::nullopt};
   RouteConfig explicit_timeout{"payments", 250};
 
   printRoute(inherited);

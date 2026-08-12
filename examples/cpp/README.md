@@ -38,7 +38,7 @@ bazel build //...
 |---|---|---|---|
 | 01 | [`01_status_or.cc`](01_status_or.cc) | `absl::Status` / `absl::StatusOr<T>` | 可恢复错误、错误码、错误向上传播 |
 | 02 | [`02_string_view.cc`](02_string_view.cc) | `absl::string_view` | non-owning view 与对象 lifetime |
-| 03 | [`03_optional.cc`](03_optional.cc) | `absl::optional<T>` | “没有值”和默认值的区别 |
+| 03 | [`03_optional.cc`](03_optional.cc) | `std::optional<T>` | “没有值”和默认值的区别 |
 | 04 | [`04_span.cc`](04_span.cc) | `absl::Span<T>` | 不复制地传递一段连续数据 |
 | 05 | [`05_flat_hash_map.cc`](05_flat_hash_map.cc) | `absl::flat_hash_map` | 高效 lookup、遍历顺序不稳定 |
 | 06 | [`06_strings.cc`](06_strings.cc) | Abseil strings | `StrCat`、`StrSplit`、`StrJoin`、`SimpleAtoi` |
@@ -50,7 +50,9 @@ bazel build //...
 | 12 | [`12_variant_overloaded.cc`](12_variant_overloaded.cc) | `Overloaded` visitor | 用 variadic template 把多个 lambda 合成 visitor |
 | 13 | [`13_inlined_vector.cc`](13_inlined_vector.cc) | `absl::InlinedVector` | 小集合避免 heap allocation |
 
-`std::variant` 部分请严格按照 10 → 11 → 12 阅读。专题说明和图解见 [`VARIANT.md`](VARIANT.md)；第 12 个例子是进阶语法，不理解它不会影响 `variant` 和 `visit` 的正常使用。
+`variant` 部分请严格按照 10 → 11 → 12 阅读。专题说明和图解见 [`VARIANT.md`](VARIANT.md)；第 12 个例子是进阶语法，不理解它不会影响 `variant` 和 `visit` 的正常使用。
+
+当前 Envoy 支持 C++20。这里直接学习 C++17 标准库提供的 `std::optional`、`std::variant` 和 `std::visit`；阅读不同版本的 Envoy 源码时也可能看到对应的 `absl::*` compatibility spelling。`absl::string_view` 等仍在 Envoy 中广泛使用的类型则保留 Envoy 写法。
 
 ## 先重点掌握 `StatusOr`
 
