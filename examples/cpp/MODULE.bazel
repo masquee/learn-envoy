@@ -1,0 +1,7 @@
+module(
+    name = "learn_envoy_cpp_examples",
+    version = "0.1.0",
+)
+
+bazel_dep(name = "abseil-cpp", version = "20260107.1")
+bazel_dep(name = "rules_cc", version = "0.2.22")

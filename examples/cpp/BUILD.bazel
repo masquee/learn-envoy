@@ -1,0 +1,100 @@
+load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+COPTS = select({
+    "@bazel_tools//src/conditions:windows": ["/std:c++17"],
+    "//conditions:default": ["-std=c++17", "-Wall", "-Wextra"],
+})
+
+cc_binary(
+    name = "status_or",
+    srcs = ["01_status_or.cc"],
+    copts = COPTS,
+    deps = [
+        "@abseil-cpp//absl/status:statusor",
+        "@abseil-cpp//absl/strings",
+    ],
+)
+
+cc_binary(
+    name = "string_view",
+    srcs = ["02_string_view.cc"],
+    copts = COPTS,
+    deps = ["@abseil-cpp//absl/strings"],
+)
+
+cc_binary(
+    name = "optional",
+    srcs = ["03_optional.cc"],
+    copts = COPTS,
+    deps = ["@abseil-cpp//absl/types:optional"],
+)
+
+cc_binary(
+    name = "span",
+    srcs = ["04_span.cc"],
+    copts = COPTS,
+    deps = ["@abseil-cpp//absl/types:span"],
+)
+
+cc_binary(
+    name = "flat_hash_map",
+    srcs = ["05_flat_hash_map.cc"],
+    copts = COPTS,
+    deps = [
+        "@abseil-cpp//absl/container:flat_hash_map",
+        "@abseil-cpp//absl/strings",
+    ],
+)
+
+cc_binary(
+    name = "strings",
+    srcs = ["06_strings.cc"],
+    copts = COPTS,
+    deps = ["@abseil-cpp//absl/strings"],
+)
+
+cc_binary(
+    name = "cleanup",
+    srcs = ["07_cleanup.cc"],
+    copts = COPTS,
+    deps = ["@abseil-cpp//absl/cleanup"],
+)
+
+cc_binary(
+    name = "smart_pointers",
+    srcs = ["08_smart_pointers.cc"],
+    copts = COPTS,
+)
+
+cc_binary(
+    name = "lambdas_callbacks",
+    srcs = ["09_lambdas_callbacks.cc"],
+    copts = COPTS,
+)
+
+cc_binary(
+    name = "variant_basics",
+    srcs = ["10_variant_basics.cc"],
+    copts = COPTS,
+)
+
+cc_binary(
+    name = "variant_visit",
+    srcs = ["11_variant_visit.cc"],
+    copts = COPTS,
+)
+
+cc_binary(
+    name = "variant_overloaded",
+    srcs = ["12_variant_overloaded.cc"],
+    copts = COPTS,
+)
+
+cc_binary(
+    name = "inlined_vector",
+    srcs = ["13_inlined_vector.cc"],
+    copts = COPTS,
+    deps = ["@abseil-cpp//absl/container:inlined_vector"],
+)
